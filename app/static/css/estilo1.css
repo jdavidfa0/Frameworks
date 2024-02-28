@@ -1,0 +1,15 @@
+.container{
+    text-align: center;
+}
+label{
+    font-family:'Courier New', Courier, monospace;
+    font-size: 35px; 
+    left: 50%;
+
+}
+
+input{
+    background-color: rgba(6, 134, 220, 0.689);
+    text-align: center;
+    padding: 10px;
+}
