@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo1.css')}}">
     <title>REGISTRAR</title>
 </head>
+
 <body>
     <div class="container">
         <h1>REGISTRAR USUARIOS</h1>
-        <form>
+        <form class="formu" method="post" action="/Registrar">
             <div class="formulario">
-            <label >NOMBRE:</label>
-            <input type="text" placeholder="Ingrese su Nombre"><br>
-            <label >APELLIDO: </label>
-            <input type="text" placeholder="Ingrese su apellido"><br>
-            <label>CORREO ELECTRONICO:</label>
-            <input type="email" placeholder="Ingrese su correo"><br>
-            <label>DIRECCION: </label>
-            <input type="text" placeholder="Ingrese su direccion"><br>
-            <label >TELEFONO: </label>
-            <input type="tel" placeholder="Ingrese su Telefono"><br>
-            <button type="submit">REGISTRAR</button>
-        </div>
+                <label>NOMBRE:</label>
+                <input type="text" placeholder="Ingrese su Nombre" name="Nombreper" required><br>
+                <br><label>APELLIDO: </label>
+                <input type="text" placeholder="Ingrese su apellido" name="apellidoper" required><br>
+                <br><label>CORREO:</label>
+                <input type="email" placeholder="Ingrese su correo" name="emailper" required><br>
+                <br><label>DIRECCION: </label>
+                <input type="text" placeholder="Ingrese su direccion" name="direccionper" required><br>
+                <br><label>TELEFONO: </label>
+                <input type="tel" placeholder="Ingrese su Telefono" name="telefonoper" required><br>
+                <br><label>USUARIO:</label>
+                <input type="text" placeholder="Ingrese Usuario" name="usuarioper" required><br>
+                <br><label>CONTRASEÑA:</label>
+                <input type="password" placeholder="Ingrese Contraseña" name="contraper" required><br>
+                <button class="boton" type="submit">REGISTRAR</button>
+            </div>
         </form>
     </div>
-    
+
 </body>
+
 </html>
