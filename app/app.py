@@ -1,11 +1,15 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, redirect
+
 import mysql.connector
 
 app = Flask(__name__)
 
 
 db = mysql.connector.connect(
-    host="localhost", user="root", password="", database="agenda"
+    host="localhost",
+    user="root",
+    password="", 
+    database="agenda"
 )
 
 cursor = db.cursor()
@@ -16,24 +20,28 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/Registrar", methods=["POST"])
+@app.route("/registrar", methods=['GET', 'POST'])
 def registrar_usuario():
-    nombre = (request.form["Nombreper"],)
-    apellido = (request.form["apellidoper"],)
-    correo = (request.form["emailper"],)
-    dirrecion = (request.form["direccionper"],)
-    telefono = (request.form["telefonoper"],)
-    usuario = (request.form["usuarioper"],)
-    contrasena = request.form["contraper"]
+    if request.method == "POST":
+        nombre = request.form.get("Nombreper")
+        apellido = request.form.get("apellidoper")
+        correo = request.form.get("emailper")
+        direccion = request.form.get("dirreccionper")
+        telefono = request.form.get("telefonoper")
+        usuario = request.form.get("usuarioper")
+        contrasena = request.form.get("contraper")
 
-    # insertar datos a la tabla persona
-    cursor.execute(
-        "insert into personas (Nombreper,apellidoper,emailper,direccionper,telefonoper,usuarioper,contraper)values(%s,%s,%s,%s,%s,%s,%s)",
-        (nombre, apellido, correo, dirrecion, telefono, usuario, contrasena),
-    )
-    db.commit()
+        # insertar datos a la tabla persona
+        cursor.execute(
+            "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
+            (nombre, apellido, correo, direccion, telefono, usuario, contrasena)
+            
+        )
+        db.commit()
 
-    return redirect(url_for("Registrar"))
+        return redirect(url_for("registrar_usuario"))
+    
+    return render_template("Registrar.html")
 
 
 if __name__ == "__main__":
