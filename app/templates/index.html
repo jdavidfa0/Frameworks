@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo.css')}}">
     <title>INDEX</title>
 </head>
+
 <body>
     <div class="container">
-        <h1>LISTADO DE USUARIOS</h1>
+        <h1>LISTADO DE USUARIOS</h1><br>
 
-    <table>
-        <tr>
-            <th>CÓDIGO:</th>
-            <th>NOMBRE:</th>
-            <th>APELLIDO:</th>
-            <th>EMAIL:</th>
-            <th>DIRECCIÓN:</th>
-            <th>TELÉFONO:</th>
-            <th>USUARIO:</th>
-        </tr>
+        <table>
+            <tr>
+                <th>CÓDIGO</th>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>EMAIL</th>
+                <th>DIRECCIÓN</th>
+                <th>TELÉFONO</th>
+                <th>USUARIO</th>
+            </tr>
 
-    <tbody>
-        {% for personas in personas %}
-        <tr>
-            <td>{{personas[0] }}</td>
-            <td>{{personas[1] }}</td>
-            <td>{{personas[2] }}</td>
-            <td>{{personas[3] }}</td>
-            <td>{{personas[4] }}</td>
-            <td>{{personas[5] }}</td>
-            <td>{{personas[6] }}</td>
-        </tr>
-        {%end for%}
+            <tbody>
+                {% for personas in personas %}
+                <tr>
+                    <td>{{personas[0] }}</td>
+                    <td>{{personas[1] }}</td>
+                    <td>{{personas[2] }}</td>
+                    <td>{{personas[3] }}</td>
+                    <td>{{personas[4] }}</td>
+                    <td>{{personas[5] }}</td>
+                    <td>{{personas[6] }}</td>
+                </tr>
+                {% endfor %}
 
-    </tbody>
+            </tbody>
 
-        
-    </table>
+
+        </table>
     </div>
-    
+
 </body>
+
 </html>

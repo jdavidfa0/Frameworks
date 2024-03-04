@@ -16,11 +16,12 @@ cursor = db.cursor()
 
 
 @app.route("/")
+
+
 def lista():
-    cursor = db.cursor
+    cursor = db.cursor()
     cursor.execute('SELECT * FROM personas')
     personas= cursor.fetchall()
-    
     return render_template("index.html", personas=personas)
 
 
