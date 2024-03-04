@@ -8,7 +8,36 @@
 </head>
 <body>
     <div class="container">
-        <h1>APLICACION CON FLASK</h1>
+        <h1>LISTADO DE USUARIOS</h1>
+
+    <table>
+        <tr>
+            <th>CÓDIGO:</th>
+            <th>NOMBRE:</th>
+            <th>APELLIDO:</th>
+            <th>EMAIL:</th>
+            <th>DIRECCIÓN:</th>
+            <th>TELÉFONO:</th>
+            <th>USUARIO:</th>
+        </tr>
+
+    <tbody>
+        {% for personas in personas %}
+        <tr>
+            <td>{{personas[0] }}</td>
+            <td>{{personas[1] }}</td>
+            <td>{{personas[2] }}</td>
+            <td>{{personas[3] }}</td>
+            <td>{{personas[4] }}</td>
+            <td>{{personas[5] }}</td>
+            <td>{{personas[6] }}</td>
+        </tr>
+        {%end for%}
+
+    </tbody>
+
+        
+    </table>
     </div>
     
 </body>

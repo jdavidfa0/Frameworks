@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 
 import mysql.connector
 
@@ -16,8 +16,12 @@ cursor = db.cursor()
 
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def lista():
+    cursor = db.cursor
+    cursor.execute('SELECT * FROM personas')
+    personas= cursor.fetchall()
+    
+    return render_template("index.html", personas=personas)
 
 
 @app.route("/registrar", methods=['GET', 'POST'])
@@ -38,6 +42,7 @@ def registrar_usuario():
             
         )
         db.commit()
+        flash('usuario creado correctamente', 'sucess')
 
         return redirect(url_for("registrar_usuario"))
     
@@ -45,5 +50,5 @@ def registrar_usuario():
 
 
 if __name__ == "__main__":
-    app.add_url_rule("/", view_func=index)
+    app.add_url_rule("/", view_func=lista)
     app.run(debug=True, port=5005)
