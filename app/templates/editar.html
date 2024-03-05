@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo1.css')}}">
+    <title>EDITAR</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>EDITAR USUARIOS</h1>
+        <form class="formu" method="post" action="">
+            <div class="formulario">
+                <label>CODIGO:</label>
+                <input type="number" name="idper" value="{{ usuario [0] }}" disabled>
+                <label>NOMBRE:</label>
+                <input type="text" name="nombre" value="{{usuario [1] }}"><br>
+                <br><label>APELLIDO: </label>
+                <input type="text" name="apellido" value="{{ usuario [2] }}"><br>
+                <br><label>CORREO:</label>
+                <input type="email" name="email" value="{{ usuario[3] }}"><br>
+                <br><label>DIRECCION: </label>
+                <input type="text" name="direccion" value="{{ usuario [4]  }}"><br>
+                <br><label>TELEFONO: </label>
+                <input type="tel" name="telefono" value="{{ usuario [5] }}"><br>
+                <br><label>USUARIO:</label>
+                <input type="text" name="usuario" value="{{ usuario [6] }}"><br>
+                <br><label>CONTRASEÑA:</label>
+                <input type="password" name="contra" value="{{ usuario[7] }}"><br>
+                <button class="boton" type="submit">ACTUALIZAR</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
