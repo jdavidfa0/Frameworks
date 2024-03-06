@@ -31,13 +31,13 @@ def registrar_usuario():
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
 
-        # insertar datos a la tabla persona
+# insertar datos a la tabla persona
         cursor.execute(
             "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
             (nombre, apellido, correo, direccion, telefono, usuario, contrasena),
         )
         db.commit()
-        flash("usuario creado correctamente", "sucess")
+        #flash("usuario creado correctamente", "sucess")
 
         return redirect(url_for("registrar_usuario"))
 
@@ -70,20 +70,28 @@ def editar_usuario(id):
                 id,
             ),
         )
-        db.commit
+        db.commit()
 
         return redirect(url_for("lista"))
 
     else:
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM personas WHERE idpersona =%s", (id,))
+        cursor.execute("SELECT * FROM personas WHERE idpersona=%s", (id,))
         data = cursor.fetchall()
         return render_template("editar.html", usuario=data[0])
 
 
 @app.route("/eliminar/<int:id>", methods=["GET"])
 def eliminar_usuario(id):
-    return redirect(url_for("lista"))
+    cursor = db.cursor()
+    if request.method == "GET":
+       cursor.execute('DELETE FROM personas WHERE idpersona=%s',(id,))
+       db.commit()
+       return redirect(url_for("lista"))
+    
+
+    
+    
 
 
 if __name__ == "__main__":
