@@ -19,6 +19,10 @@ def lista():
     usuario = cursor.fetchall()
     return render_template("index.html", personas=usuario)
 
+@app.route("/verficar")
+def usuario_existe():
+    render_template('verificar.html')
+    
 
 @app.route("/registrar", methods=["GET", "POST"])
 def registrar_usuario():
@@ -31,17 +35,24 @@ def registrar_usuario():
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
 
-# insertar datos a la tabla persona
-        cursor.execute(
-            "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
-            (nombre, apellido, correo, direccion, telefono, usuario, contrasena),
-        )
-        db.commit()
-        #flash("usuario creado correctamente", "sucess")
+        cursor.execute('SELECT * FROM personas WHERE emailper=%s',(correo,))
+        resultado=cursor.fetchall()
+        
+        if len(resultado)>0:
+            return redirect(url_for('usuario_existe'))
+        else:
+    # insertar datos a la tabla persona
+            cursor.execute(
+                "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
+                (nombre, apellido, correo, direccion, telefono, usuario, contrasena),
+            )
+            db.commit()
+            #flash("usuario creado correctamente", "sucess")
 
-        return redirect(url_for("registrar_usuario"))
+            return redirect(url_for("registrar_usuario"))
 
     return render_template("Registrar.html")
+
 
 
 @app.route("/editar/<int:id>", methods=["POST", "GET"])

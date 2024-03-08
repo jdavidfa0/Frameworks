@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo2.css')}}">
+    <link rel="stylesheet" href="../static/css/estilo2.css">
+    <title>Verficador</title>
+</head>
+<body>
+    <div class="contenedor">
+
+        <div class="tit">
+
+            <h1>USUARIO YA EXISTE</h1>
+            <p>El usuario ingresado ya existe</p>
+        </div>
+
+        <div class="boton">
+            
+            <button id="botto" type="submit" href="{{ url_for('registrar_usuario') }}">REGRESAR</button>
+
+        </div>
+
+        
+       
+
+
+    </div>
+    
+</body>
+</html>
