@@ -19,9 +19,10 @@ def lista():
     usuario = cursor.fetchall()
     return render_template("index.html", personas=usuario)
 
-@app.route("/verficar")
+
+@app.route('/verificar')
 def usuario_existe():
-    render_template('verificar.html')
+    return render_template('verificar.html')
     
 
 @app.route("/registrar", methods=["GET", "POST"])
@@ -35,10 +36,13 @@ def registrar_usuario():
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
 
+        cursor.execute('SELECT * FROM personas WHERE usuarioper=%s',(usuario,))
+        resultado1=cursor.fetchall()
         cursor.execute('SELECT * FROM personas WHERE emailper=%s',(correo,))
-        resultado=cursor.fetchall()
+        resultado2=cursor.fetchall()
         
-        if len(resultado)>0:
+    
+        if len(resultado1)>0 or len(resultado2)>0:
             return redirect(url_for('usuario_existe'))
         else:
     # insertar datos a la tabla persona

@@ -17,7 +17,6 @@ h1{
     border: 3px solid rgb(33, 95, 95);
     padding: 50px ;
     margin: -55px 800px;
-    
     background-color: azure;
 }
 p{
@@ -31,8 +30,11 @@ p{
     border-radius: 100px;
     border: 2px solid rgb(33, 95, 95) ;
     padding: 15px;
-    
+   
 }
 #botto:hover{
     background-color:rgb(175, 204, 212);
+}
+a{
+    text-decoration: none;
 }
