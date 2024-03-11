@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, url_for, redirect, flash
-
+from flask import Flask, render_template, request, url_for, redirect, flash, session
+import bcrypt
 import mysql.connector
 
 app = Flask(__name__)
@@ -10,6 +10,10 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
+
+def encriptarcontra(contraencrip):
+    encriptar= bcrypt.hashpw(contraencrip.encode('utf-8'), bcrypt.gensalt())
+    return encriptar
 
 
 @app.route("/")
@@ -35,6 +39,8 @@ def registrar_usuario():
         telefono = request.form.get("telefonoper")
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
+        
+        contrasenaencriptada=encriptarcontra(contrasena)
 
         cursor.execute('SELECT * FROM personas WHERE usuarioper=%s',(usuario,))
         resultado1=cursor.fetchall()
@@ -48,7 +54,7 @@ def registrar_usuario():
     # insertar datos a la tabla persona
             cursor.execute(
                 "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
-                (nombre, apellido, correo, direccion, telefono, usuario, contrasena),
+                (nombre, apellido, correo, direccion, telefono, usuario, contrasenaencriptada),
             )
             db.commit()
             #flash("usuario creado correctamente", "sucess")
@@ -104,6 +110,23 @@ def eliminar_usuario(id):
        db.commit()
        return redirect(url_for("lista"))
     
+@app.route("/login", methods=['GET','POST'] )
+def login():
+    if request.method == 'POST':
+        username=request.form.get('usuarioini')
+        password= request.form.get('contraini')
+
+        cursor=db.cursor()
+        cursor.execute('SELECT usuarioper, contraper from personas WHERE usuarioper=%s', (username,))
+        usuarios=cursor.fetchone()
+       
+        if usuarios and bcrypt.check_password_hash(usuarios[7], password):
+            session['usuario']=username
+            return redirect(url_for('lista'))
+        else:
+            error='Credenciales invalidas, intente denuevo'
+            return render_template('login.html', error=error)
+    return render_template('login.html')
 
     
     
