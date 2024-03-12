@@ -15,7 +15,9 @@
 }
 
 .titulo{
-    border: 2px solid;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    border-left: 2px solid;
     text-align: center;
     font-size: 35px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -26,9 +28,12 @@
     margin-top: 150px;
 }
 .formu{
-    border: 2px solid;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    border-left: 2px solid;
     width: 500px;
     padding: 30px;
+    margin-top: -20px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
@@ -43,6 +48,7 @@ input{
     width: 250px;
     height: 40px;
     border-radius: 5px;
+
 }
 .boton{
     padding: 10px;
@@ -57,4 +63,7 @@ input{
     background-color: rgb(182, 250, 186);
     border-radius: 5px;
     z-index: 10px;
+}
+.us{
+    margin-left: 52px;
 }

@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
-import bcrypt
+from werkzeug.security import generate_password_hash,check_password_hash
 import mysql.connector
 
 app = Flask(__name__)
+app.secret_key ='21061976'
 
 
 db = mysql.connector.connect(
@@ -11,9 +12,13 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
+@app.route('/password/<contraencip>')
 def encriptarcontra(contraencrip):
-    encriptar= bcrypt.hashpw(contraencrip.encode('utf-8'), bcrypt.gensalt())
-    return encriptar
+    encriptar=generate_password_hash(contraencrip)
+    valor = check_password_hash(encriptar,contraencrip)
+
+   # return "Encriptado:{0} | coincide:{1}".format(encriptar,valor)
+    return valor
 
 
 @app.route("/")
@@ -40,7 +45,7 @@ def registrar_usuario():
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
         
-        contrasenaencriptada=encriptarcontra(contrasena)
+        contrasenaencriptada=generate_password_hash(contrasena)
 
         cursor.execute('SELECT * FROM personas WHERE usuarioper=%s',(usuario,))
         resultado1=cursor.fetchall()
@@ -113,15 +118,17 @@ def eliminar_usuario(id):
 @app.route("/login", methods=['GET','POST'] )
 def login():
     if request.method == 'POST':
-        username=request.form.get('usuarioini')
+        username=request.form.get('usuarioinir')
         password= request.form.get('contraini')
 
         cursor=db.cursor()
-        cursor.execute('SELECT usuarioper, contraper from personas WHERE usuarioper=%s', (username,))
-        usuarios=cursor.fetchone()
+        cursor.execute("SELECT usuarioper, contraper from personas WHERE usuarioper=%s", (username,))
+        resultado=cursor.fetchone()
+
        
-        if usuarios and bcrypt.check_password_hash(usuarios[7], password):
+        if resultado and check_password_hash(resultado[1],password):
             session['usuario']=username
+            
             return redirect(url_for('lista'))
         else:
             error='Credenciales invalidas, intente denuevo'
