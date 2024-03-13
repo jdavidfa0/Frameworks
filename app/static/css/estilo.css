@@ -1,18 +1,21 @@
-.container {
-    background-color: rgb(175, 205, 241);
-    padding: 20px
-}
-
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
+.container {
+    background-color: rgb(175, 205, 241);
+    padding: 5px;
+    width: 100vw;
+    height: 100vh; 
+}
+
+
 
 table {
     text-align: center;
     border-collapse: collapse;
-    width: 80%;
+    width: auto;
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
@@ -40,3 +43,39 @@ h1 {
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+a{
+    text-decoration: none;
+}
+.registra{
+   
+    padding: 10px;
+    margin-left: 17%;
+    border-radius: 5px ;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+   
+    z-index: 10px;
+}
+.registra:hover {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(182, 250, 186);
+    border-radius: 5px;
+    z-index: 10px;
+}
+.cerrar{
+   
+    padding: 10px;
+    margin-left: 53%;
+    border-radius: 5px ;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    z-index: 10px;
+}
+.cerrar:hover {
+   
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(182, 250, 186);
+    border-radius: 5px;
+    z-index: 10px;
+}
+

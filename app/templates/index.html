@@ -10,10 +10,16 @@
 
 <body>
     <div class="container">
+        <h1>Bienvenido {{session['usuario']}}</h1><br>
         <h1>LISTADO DE USUARIOS</h1><br>
+        <button class="registra"><a href="{{ url_for('registrar_usuario') }}">Agregrar Usuario</a></button>
+        <button class="cerrar"><a href="/logout">Cerrar Sesión</a></button>
+        
 
         <table>
+            
             <tr>
+               
                 <th>CÓDIGO</th>
                 <th>NOMBRE</th>
                 <th>APELLIDO</th>

@@ -54,6 +54,7 @@ def registrar_usuario():
         
     
         if len(resultado1)>0 or len(resultado2)>0:
+            print("Usuario o correo ya existe")
             return redirect(url_for('usuario_existe'))
         else:
     # insertar datos a la tabla persona
@@ -64,7 +65,7 @@ def registrar_usuario():
             db.commit()
             #flash("usuario creado correctamente", "sucess")
 
-            return redirect(url_for("registrar_usuario"))
+            return redirect(url_for("login"))
 
     return render_template("Registrar.html")
 
@@ -135,8 +136,13 @@ def login():
             return render_template('login.html', error=error)
     return render_template('login.html')
 
-    
-    
+
+@app.route("/logout")
+def logout():
+    session.pop('usuario', None)
+    print("La sesión se cerró")
+    return redirect(url_for('login'))
+
 
 
 if __name__ == "__main__":

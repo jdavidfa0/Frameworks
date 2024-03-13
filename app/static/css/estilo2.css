@@ -8,7 +8,8 @@ h1{
     padding: 60px;
     border: 2px solid rgb(33, 95, 95);
     background-color: rgb(175, 204, 212);
-    margin: 50px 300px;
+    margin-left: auto;
+    margin-right: auto;
   
 }   
 
@@ -16,7 +17,10 @@ h1{
     text-align: center;
     border: 3px solid rgb(33, 95, 95);
     padding: 50px ;
-    margin: -55px 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -52px;
+    width: 63%;
     background-color: azure;
 }
 p{
