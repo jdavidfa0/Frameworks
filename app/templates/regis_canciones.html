@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRO CANCIONES</title>
+</head>
+<body>
+    <div class="container">
+        <h1>REGISTRO DE CANCIONES</h1>
+        <form class="formu" method="post" action="/regis_canciones">
+            <div class="formulario">
+                <label>TITULO:</label>
+                <input type="text" placeholder="Ingrese Titulo" name="titulocan" required><br>
+                <br><label>ARTISTA: </label>
+                <input type="text" placeholder="Ingrese Artista" name="artistacan" required><br>
+                <br><label>GÉNERO: </label>
+                <input type="text" placeholder="Ingrese Género" name="generocan" required><br>
+                <br><label>PRECIO: </label>
+                <input type="number" placeholder="Ingrese Precio" name="preciocan" required><br>
+                <br><label>DURACIÓN:</label>
+                <input type="text" placeholder="Ingrese Duración" name="duracioncan" required><br>
+                <br><label>FECHA DE LANZAMIENTO: </label>
+                <input type="date" placeholder="Ingrese Fecha" name="fechacan" required><br>
+                <br><label>PORTADA: </label>
+                <input type="file" accept="image/*" name="imagencan" required><br>
+                <button class="boton" type="submit">REGISTRAR</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

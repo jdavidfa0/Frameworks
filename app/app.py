@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from werkzeug.security import generate_password_hash,check_password_hash
 import mysql.connector
+import tempfile
 
 app = Flask(__name__)
 app.secret_key ='21061976'
+
 
 
 db = mysql.connector.connect(
@@ -27,6 +29,15 @@ def lista():
     cursor.execute("SELECT * FROM personas")
     usuario = cursor.fetchall()
     return render_template("index.html", personas=usuario)
+
+@app.route("/Lista_canciones", methods=["GET", "POST"])
+def lista_cancion():
+    cursor= db.cursor()
+    cursor.execute("SELECT * FROM canciones")
+    cancion = cursor.fetchall()
+    return render_template("Lista_canciones.html", canciones=cancion)
+   
+  
 
 
 @app.route('/verificar')
@@ -144,6 +155,70 @@ def logout():
     return redirect(url_for('login'))
 
 
+@app.route("/regis_canciones", methods=["GET", "POST"])
+def registrar_cancion():
+    if request.method == "POST":
+        titulo = request.form.get("titulocan")
+        artista = request.form.get("artistacan")
+        genero = request.form.get("generocan")
+        precio = request.form.get("preciocan")
+        duracion= request.form.get("duracioncan")
+        lanzamiento = request.form.get("fechacan")
+        imagen= request.form.get("imagencan")
+        
+        cursor.execute("insert into canciones( titulo,artista ,genero,precio,duracion ,lanzamiento ,img)values(%s,%s,%s,%s,%s,%s,%s)",
+        (titulo, artista, genero, precio, duracion,lanzamiento, imagen),)
+        db.commit()
+
+        return redirect(url_for("registrar_cancion"))
+
+    return render_template("regis_canciones.html")
+
+@app.route("/eliminar_cancion/<int:id>", methods=["GET"])
+def eliminar_cancion(id):
+
+    cursor = db.cursor()
+    if request.method == "GET":
+       cursor.execute('DELETE FROM canciones WHERE id_can=%s',(id,))
+       db.commit()
+       return redirect(url_for("lista_cancion"))
+    
+
+@app.route("/actu_canciones/<int:id>", methods=["POST", "GET"])
+def actualizar_canciones(id):
+    cursor = db.cursor()
+    if request.method == "POST":
+        titulo = request.form.get("titulocan")
+        artista = request.form.get("artistacan")
+        genero = request.form.get("generocan")
+        precio = request.form.get("preciocan")
+        duracion= request.form.get("duracioncan")
+        lanzamiento = request.form.get("fechacan")
+        imagen= request.form.get("imagencan")
+
+        sql = "update canciones set titulo=%s, artista=%s,genero=%s,precio=%s, duracion=%s,lanzamiento=%s, img=%s where id_can=%s"
+        cursor.execute(
+            sql,
+            (
+                titulo,
+                artista,
+                genero,
+                precio,
+                duracion,
+                lanzamiento,
+                imagen,
+                id
+            ),
+        )
+        db.commit()
+
+        return redirect(url_for("lista_cancion"))
+
+    else:
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM canciones WHERE id_can=%s", (id,))
+        data = cursor.fetchall()
+        return render_template("actu_canciones.html", cancion=data[0])
 
 if __name__ == "__main__":
     app.add_url_rule("/", view_func=lista)
