@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo4.css')}}">
     <title>LISTADO CANCIONES</title>
 </head>
 <body>
     <div class="container">
         <h1>LISTA CANCIONES</h1><br>
-        <table>
+        <table class="tabla">
             
             <tr>
                
@@ -20,11 +21,12 @@
                 <th>DURACIÓN</th>
                 <th>LANZAMIENTO</th>
                 <th>PORTADA</th>
+                <th>ACCIONES</th>
             </tr>
 
             <tbody>
                 {% for cancion in canciones %}
-                <tr>
+                <tr class="lineas">
                     <td>{{cancion[0] }}</td>
                     <td>{{cancion[1] }}</td>
                     <td>{{cancion[2] }}</td>
@@ -34,8 +36,8 @@
                     <td>{{cancion[6] }}</td>
                     <td><img src="{{ ruta_imagen }}" alt="Portada de {{ cancion[1] }}" style="width: 100px;"></td>
                     <td>
-                        <a href="{{ url_for('actualizar_canciones', id=cancion[0]) }}">Editar</a>
-                        <a href="{{ url_for('eliminar_cancion', id=cancion[0]) }}">Eliminar</a>
+                        <button><a href="{{ url_for('actualizar_canciones', id=cancion[0]) }}">Editar</a></button>
+                        <button><a href="{{ url_for('eliminar_cancion', id=cancion[0]) }}">Eliminar</a></button>
                     </td>
                 </tr>
                 {% endfor %}

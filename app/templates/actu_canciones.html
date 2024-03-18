@@ -4,17 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo5.css')}}">
     <title>EDITAR</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>EDITAR USUARIOS</h1>
+        <h1>EDITAR CANCIONES</h1>
         <form class="formu" method="post" action="">
             <div class="formulario">
                 <label>CODIGO:</label>
                 <input type="number" name="id_can" value="{{ cancion[0] }}" disabled><br>
-                <label>TITULO:</label>
+                <br><label>TITULO:</label>
                 <input type="text" placeholder="Ingrese Titulo" name="titulocan" value="{{ cancion[1] }}" required><br>
                 <br><label>ARTISTA: </label>
                 <input type="text" placeholder="Ingrese Artista" name="artistacan" value="{{ cancion[2] }}" required><br>
@@ -25,9 +27,9 @@
                 <br><label>DURACIÓN:</label>
                 <input type="text" placeholder="Ingrese Duración" name="duracioncan" value="{{ cancion[5] }}" required><br>
                 <br><label>FECHA DE LANZAMIENTO: </label>
-                <input type="date" placeholder="Ingrese Fecha" name="fechacan" value="{{ cancion[6] }}" required><br>
+                <input class="fecha" type="date" placeholder="Ingrese Fecha" name="fechacan" value="{{ cancion[6] }}" required><br>
                 <br><label>PORTADA: </label>
-                <input type="file" accept="image/*" name="imagencan" value="{{ cancion[7] }}" required><br>
+                <input type="file" accept="image/*" name="imagencan" value="{{ cancion[7] }}"><br>
                 <button class="boton" type="submit">ACTUALIZAR</button>
             </div>
         </form>
