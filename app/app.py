@@ -39,9 +39,9 @@ def lista_cancion():
     if canciones:
         cancioneslista=[]
         for cancion in canciones:
-            #covertir imagen
-            imagen= base64.b64encode(cancion[7]).decode('uft-8')
-            
+
+            imagen=base64.b64encode(cancion[7]).decode('utf-8')
+
             cancioneslista.append({
                 'id_can': cancion[0],
                 'titulo': cancion[1],
