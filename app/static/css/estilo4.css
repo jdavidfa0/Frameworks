@@ -31,6 +31,7 @@ h1{
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    background-color: aliceblue;
 
 }
 th {
@@ -68,4 +69,12 @@ button:hover{
     background-color: rgb(158, 201, 238);
     font-weight: bold;
 
+}
+.cerrar:hover{ 
+    background-color: rgb(158, 201, 238);
+    font-weight: bold;
+}
+.cerrar{
+    margin-left: 67%;
+    margin-top: -10px;
 }

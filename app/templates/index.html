@@ -5,15 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo.css')}}">
-    <title>INDEX</title>
+    <title>PRINCIPAL</title>
 </head>
 
 <body>
     <div class="container">
-        <h1>Bienvenido {{session['usuario']}}</h1><br>
-        <h1>LISTADO DE USUARIOS</h1><br>
-        <button class="registra"><a href="{{ url_for('registrar_usuario') }}">Agregrar Usuario</a></button>
-        <button class="cerrar"><a href="/logout">Cerrar Sesión</a></button>
+        <h1>LISTADO DE USUARIOS, Bienvenido {{session['usuario']}}</h1>
+        <div class="botones">
+            <button class="registra"><a href="{{ url_for('registrar_usuario') }}">Agregrar Usuario</a></button>
+            <button class="agregar"><a href="{{ url_for ('registrar_cancion')}}">Agregar Cancion</a></button>
+            <button class="canciones"><a href="{{ url_for ('lista_cancion')}}">Editar Canciones</a></button>
+            <button class="cerrar"><a href="/logout">Cerrar Sesión</a></button>
+        </div>
+
         
 
         <table>
@@ -32,7 +36,7 @@
 
             <tbody>
                 {% for usuario in personas %}
-                <tr>
+                <tr  class="lineas">
                     <td>{{usuario[0] }}</td>
                     <td>{{usuario[1] }}</td>
                     <td>{{usuario[2] }}</td>

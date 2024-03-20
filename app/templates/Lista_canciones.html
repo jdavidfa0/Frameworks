@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo4.css')}}">
+   
     <title>LISTADO CANCIONES</title>
+    
 </head>
 <body>
     <div class="container">
-        <h1>LISTA CANCIONES</h1><br>
+        <h1>LISTA DE CANCIONES</h1>
+
         <table class="tabla">
             
             <tr>
@@ -25,16 +28,16 @@
             </tr>
 
             <tbody>
-                {% for cancion in canciones %}
+                {% for cancion in cancioneslista %}
                 <tr class="lineas">
-                    <td>{{cancion[0] }}</td>
-                    <td>{{cancion[1] }}</td>
-                    <td>{{cancion[2] }}</td>
-                    <td>{{cancion[3] }}</td>
-                    <td>{{cancion[4] }}</td>
-                    <td>{{cancion[5] }}</td>
-                    <td>{{cancion[6] }}</td>
-                    <td><img src="{{ ruta_imagen }}" alt="Portada de {{ cancion[1] }}" style="width: 100px;"></td>
+                    <td>{{cancion.id_can }}</td>
+                    <td>{{cancion.titulo}}</td>
+                    <td>{{cancion.artista}}</td>
+                    <td>{{cancion.genero }}</td>
+                    <td>{{cancion.precio}}</td>
+                    <td>{{cancion.duraccion}}</td>
+                    <td>{{cancion.lanzamiento}}</td>
+                    <td><img src="data:image/jpeg; base64,{{cancion.imagen}}" alt="Portada de {{cancion[7]}}" width="100"></td>
                     <td>
                         <button><a href="{{ url_for('actualizar_canciones', id=cancion[0]) }}">Editar</a></button>
                         <button><a href="{{ url_for('eliminar_cancion', id=cancion[0]) }}">Eliminar</a></button>

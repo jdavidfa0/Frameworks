@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 from werkzeug.security import generate_password_hash,check_password_hash
 import mysql.connector
-import tempfile
+import base64
 
 app = Flask(__name__)
 app.secret_key ='21061976'
@@ -23,7 +23,7 @@ def encriptarcontra(contraencrip):
     return valor
 
 
-@app.route("/")
+@app.route("/lista")
 def lista():
     cursor = db.cursor()
     cursor.execute("SELECT * FROM personas")
@@ -33,12 +33,36 @@ def lista():
 @app.route("/Lista_canciones", methods=["GET", "POST"])
 def lista_cancion():
     cursor= db.cursor()
+    cursor.execute("SELECT id_can, titulo, artista, genero, precio, duracion, lanzamiento, img FROM canciones")
+    canciones = cursor.fetchall()
+
+    if canciones:
+        cancioneslista=[]
+        for cancion in canciones:
+            #covertir imagen
+            imagen= base64.b64encode(cancion[7]).decode('uft-8')
+            
+            cancioneslista.append({
+                'id_can': cancion[0],
+                'titulo': cancion[1],
+                'artista': cancion[2],
+                'genero': cancion[3],
+                'precio': cancion[4],
+                'duracion': cancion[5],
+                'lanzamiento': cancion[6],
+                'imagen':imagen
+            })
+        
+        return render_template("Lista_canciones.html", canciones=cancioneslista)
+    else:
+        return print("canciones no encontradas")
+   
+@app.route("/Lista_canciones_u", methods=["GET", "POST"])
+def lista_cancion_u():
+    cursor= db.cursor()
     cursor.execute("SELECT * FROM canciones")
     cancion = cursor.fetchall()
-    return render_template("Lista_canciones.html", canciones=cancion)
-   
-  
-
+    return render_template("lista_cancion_u.html", canciones=cancion)
 
 @app.route('/verificar')
 def usuario_existe():
@@ -55,13 +79,14 @@ def registrar_usuario():
         telefono = request.form.get("telefonoper")
         usuario = request.form.get("usuarioper")
         contrasena = request.form.get("contraper")
+        rol = request.form.get("rolregistrar")
         
         contrasenaencriptada=generate_password_hash(contrasena)
 
         cursor.execute('SELECT * FROM personas WHERE usuarioper=%s',(usuario,))
         resultado1=cursor.fetchall()
         cursor.execute('SELECT * FROM personas WHERE emailper=%s',(correo,))
-        resultado2=cursor.fetchall()
+        resultado2=cursor.fetchall() 
         
     
         if len(resultado1)>0 or len(resultado2)>0:
@@ -70,13 +95,13 @@ def registrar_usuario():
         else:
     # insertar datos a la tabla persona
             cursor.execute(
-                "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper )values(%s,%s,%s,%s,%s,%s,%s)",
-                (nombre, apellido, correo, direccion, telefono, usuario, contrasenaencriptada),
+                "insert into personas( Nombreper ,apellidoper ,emailper ,dirreccionper ,telefonoper ,usuarioper ,contraper, roles )values(%s,%s,%s,%s,%s,%s,%s,%s)",
+                (nombre, apellido, correo, direccion, telefono, usuario, contrasenaencriptada, rol),
             )
             db.commit()
             #flash("usuario creado correctamente", "sucess")
 
-            return redirect(url_for("login"))
+            return redirect(url_for("registrar_usuario"))
 
     return render_template("Registrar.html")
 
@@ -133,15 +158,21 @@ def login():
         username=request.form.get('usuarioinir')
         password= request.form.get('contraini')
 
-        cursor=db.cursor()
-        cursor.execute("SELECT usuarioper, contraper from personas WHERE usuarioper=%s", (username,))
+        cursor=db.cursor(dictionary=True)
+        cursor.execute("SELECT usuarioper, contraper, roles from personas WHERE usuarioper=%s", (username,))
         resultado=cursor.fetchone()
 
        
-        if resultado and check_password_hash(resultado[1],password):
+        if resultado and check_password_hash(resultado['contraper'],password):
             session['usuario']=username
-            
-            return redirect(url_for('lista'))
+            session['usuario'] = resultado ['usuarioper']
+            session['rol'] = resultado['roles']
+        # De acuerdo al rol asignamos la url 
+            if resultado ['roles'] == 'admin':
+                return redirect (url_for ('lista'))
+            else:
+                return redirect (url_for ('lista_cancion_u'))
+        
         else:
             error='Credenciales invalidas, intente denuevo'
             return render_template('login.html', error=error)
@@ -221,5 +252,5 @@ def actualizar_canciones(id):
         return render_template("actu_canciones.html", cancion=data[0])
 
 if __name__ == "__main__":
-    app.add_url_rule("/", view_func=lista)
+    app.add_url_rule("/", view_func=login)
     app.run(debug=True, port=5005)

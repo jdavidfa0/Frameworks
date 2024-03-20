@@ -4,15 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo1.css')}}">
-    <title>REGISTRAR</title>
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo5.css')}}">
+    <title>REGISTRAR USUARIO</title>
 </head>
 
 <body>
+  
     <div class="container">
-        <h1>REGISTRAR USUARIOS</h1>
+        
+        <h1>REGISTRAR USUARIOS
+            
+        </h1>
+        
         <form class="formu" method="post" action="/registrar">
+            
+
             <div class="formulario">
+                
                 <label>NOMBRE:</label>
                 <input type="text" placeholder="Ingrese su Nombre" name="Nombreper" required><br>
                 <br><label>APELLIDO: </label>
@@ -27,9 +35,21 @@
                 <input type="text" placeholder="Ingrese Usuario" name="usuarioper" required><br>
                 <br><label>CONTRASEÑA:</label>
                 <input type="password" placeholder="Ingrese Contraseña" name="contraper" required><br>
-                <button class="boton" type="submit">REGISTRAR</button>
+                <br><LABEl>ROLES:</LABEl>
+                <select class="rol" type="text" name="rolregistrar">
+                    <option value="admin">ADMINISTRADOR</option>
+                    <option value="comprador">USUARIO</option>
+
+                </select>
+                <div class="enviar">
+                    <br><button class="boton" type="submit">REGISTRAR</button> <button class="registra"><a href="{{ url_for('lista') }}">Volver</a></button>
+              
+                </div>
+                
             </div>
+            
         </form>
+        
     </div>
 
 </body>

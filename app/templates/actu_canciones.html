@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo5.css')}}">
-    <title>EDITAR</title>
+    <title>EDITAR CANCIONES</title>
 </head>
 
 <body>
@@ -30,7 +30,7 @@
                 <input class="fecha" type="date" placeholder="Ingrese Fecha" name="fechacan" value="{{ cancion[6] }}" required><br>
                 <br><label>PORTADA: </label>
                 <input type="file" accept="image/*" name="imagencan" value="{{ cancion[7] }}"><br>
-                <button class="boton" type="submit">ACTUALIZAR</button>
+                <button class="boton" type="submit">ACTUALIZAR</button><button class="registra"><a href="{{ url_for('lista_cancion') }}">Volver</a></button>
             </div>
         </form>
     </div>

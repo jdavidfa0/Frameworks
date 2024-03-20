@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo1.css')}}">
-    <title>EDITAR</title>
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo5.css')}}">
+    <title>EDITAR USUARIOS</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
             <div class="formulario">
                 <label>CODIGO:</label>
                 <input type="number" name="idper" value="{{ usuario [0] }}" disabled>
-                <label>NOMBRE:</label>
+                <br><label>NOMBRE:</label>
                 <input type="text" name="nombre" value="{{usuario [1] }}"><br>
                 <br><label>APELLIDO: </label>
                 <input type="text" name="apellido" value="{{ usuario [2] }}"><br>
@@ -29,7 +29,9 @@
                 <input type="text" name="usuario" value="{{ usuario [6] }}"><br>
                 <br><label>CONTRASEÑA:</label>
                 <input type="password" name="contra" value="{{ usuario[7] }}"><br>
-                <button class="boton" type="submit">ACTUALIZAR</button>
+                <div class="enviar">
+                    <br><button class="boton" type="submit">ACTUALIZAR</button>
+                </div>
             </div>
         </form>
     </div>

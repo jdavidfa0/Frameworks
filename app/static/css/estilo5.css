@@ -39,17 +39,38 @@ input{
  border: 1px solid;
  margin-left: 150px;
  padding: 10px;
+ margin-top: 10px;
+
 
 }
 .boton:hover{
     background-color: rgb(158, 201, 238);
     font-weight: bold;
 }
-.container {
+.container,.contenedor{
     border:1px solid;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(129, 146, 160);
     width: 100vw;
     height: 100vh; 
+}
+.enviar{
+    margin-left:-27px;
+
+}
+button{
+    padding: 8px;
+    border-radius: 10px;
+    background-color:rgb(221, 221, 221) ;
+    text-align: center;
+    font-size: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',Verdana, sans-serif;
+    margin-left: 46.5%;
+
+}
+button:hover{
+    background-color: rgb(158, 201, 238);
+    font-weight: bold;
+
 }

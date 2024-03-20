@@ -4,78 +4,83 @@
     box-sizing: border-box;
 }
 .container {
-    background-color: rgb(175, 205, 241);
-    padding: 5px;
+    border:1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:aliceblue;
     width: 100vw;
-    height: 100vh; 
+    height: 100vh;  
 }
 
 
 
 table {
-    text-align: center;
+    border: 1px solid;
     border-collapse: collapse;
-    width: auto;
-    margin-top: 5%;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgb(221, 255, 203);
+    margin-top: 10px;
+
 
 }
 
 th {
-
-    border: 2px solid rgb(209, 243, 182);;
+    border: 1px solid;
+    border-bottom: 1px solid;
+    background-color: rgb(158, 201, 238);
     padding: 10px;
+    font-size: 20px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     
 }
 
 td {
-    border: 2px solid rgb(209, 243, 182);
     padding: 10px;
-   font-size: 20px;
+    font-size: 20px;
    font-family:Arial, Helvetica, sans-serif;
 
 }
+.lineas:hover{
+    background-color: rgb(221, 221, 221);
+}
 
 h1 {
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid;
+    border-radius: 10px;;
+    padding: 20px;
+    width: fit-content;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 140px;
+    background-color: rgb(158, 201, 238);
+
+   
+    
 }
 a{
     text-decoration: none;
 }
-.registra{
-   
-    padding: 10px;
-    margin-left: 17%;
-    border-radius: 5px ;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 15px;
-   
-    z-index: 10px;
-}
-.registra:hover {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(182, 250, 186);
-    border-radius: 5px;
-    z-index: 10px;
-}
-.cerrar{
-   
-    padding: 10px;
-    margin-left: 53%;
-    border-radius: 5px ;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    z-index: 10px;
-}
-.cerrar:hover {
-   
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(182, 250, 186);
-    border-radius: 5px;
-    z-index: 10px;
-}
 
+button{
+    padding: 8px;
+    border-radius: 10px;
+    background-color:rgb(221, 221, 221) ;
+    text-align: center;
+    font-size: 15px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode',Verdana, sans-serif;
+}
+button:hover{
+    background-color: rgb(158, 201, 238);
+    font-weight: bold;
+
+}
+.botones{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: fit-content;
+}

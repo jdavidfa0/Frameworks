@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo3.css')}}">
-    <link rel="stylesheet" href="/app/static/css/estilo3.css">
-    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo5.css')}}">
+    
+
+    <title>INICIO SESIÓN</title>
 </head>
 <body>
     <div class="contenedor">
         <div class="titulo">
-            <p>INGRESE SUS DATOS</p>
+            <h1>INGRESE SU USUARIO</h1>
         </div>
         <div class="formu">
             <form action="/login"  method="post">
@@ -18,7 +19,9 @@
                 <input class="us" type="text" placeholder="Usuario" name="usuarioinir" required><br>
                 <br><label>CONTRASEÑA:</label>
                 <input type="password" placeholder="Ingrese Contraseña" name="contraini" required><br>
-                <button class="boton" type="submit">INICIAR SESIÓN</button>
+                <div class="enviar">
+                    <br><button class="boton" type="submit">INICIAR SESIÓN</button>
+                </div>
 
             </form>
         </div>
