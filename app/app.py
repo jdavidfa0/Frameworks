@@ -55,7 +55,7 @@ def lista_cancion():
         
         return render_template("Lista_canciones.html", canciones=cancioneslista)
     else:
-        return print("canciones no encontradas")
+        return render_template("Lista_canciones.html")
    
 @app.route("/Lista_canciones_u", methods=["GET", "POST"])
 def lista_cancion_u():
@@ -195,10 +195,12 @@ def registrar_cancion():
         precio = request.form.get("preciocan")
         duracion= request.form.get("duracioncan")
         lanzamiento = request.form.get("fechacan")
-        imagen= request.form.get("imagencan")
+        imagen= request.files["imagencan"]
+
+        imagen2= imagen.read()
         
         cursor.execute("insert into canciones( titulo,artista ,genero,precio,duracion ,lanzamiento ,img)values(%s,%s,%s,%s,%s,%s,%s)",
-        (titulo, artista, genero, precio, duracion,lanzamiento, imagen),)
+        (titulo, artista, genero, precio, duracion,lanzamiento, imagen2),)
         db.commit()
 
         return redirect(url_for("registrar_cancion"))
@@ -225,8 +227,8 @@ def actualizar_canciones(id):
         precio = request.form.get("preciocan")
         duracion= request.form.get("duracioncan")
         lanzamiento = request.form.get("fechacan")
-        imagen= request.form.get("imagencan")
-
+        imagen= request.files["imagencan"]
+        imagen2= imagen.read()
         sql = "update canciones set titulo=%s, artista=%s,genero=%s,precio=%s, duracion=%s,lanzamiento=%s, img=%s where id_can=%s"
         cursor.execute(
             sql,
@@ -237,7 +239,7 @@ def actualizar_canciones(id):
                 precio,
                 duracion,
                 lanzamiento,
-                imagen,
+                imagen2,
                 id
             ),
         )

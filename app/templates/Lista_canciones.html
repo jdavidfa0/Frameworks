@@ -10,13 +10,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>LISTA DE CANCIONES</h1>
+        <h1>LISTA DE CANCIONES: {{session['usuario']}} </h1>
 
         <table class="tabla">
             
             <tr>
                
-                <th>CÓDIGO</th>
+             
                 <th>TITULO</th>
                 <th>ARTISTA</th>
                 <th>GÉNERO</th>
@@ -28,19 +28,21 @@
             </tr>
 
             <tbody>
-                {% for canciones in cancioneslista %}
+                {% for canciones in canciones %}
                 <tr class="lineas">
-                    <td>{{ canciones.id_can }}</td>
-                    <td>{{cancion[1] }}</td>
-                    <td>{{cancion[2] }}</td>
-                    <td>{{cancion[3] }}</td>
-                    <td>{{cancion[4] }}</td>
-                    <td>{{cancion[5] }}</td>
-                    <td>{{cancion[6] }}</td>
-                    <td><img src="data:image/jpeg; base64,{{cancion.imagen}}" alt="Portada de {{cancion[7]}}" width="100px"></td>
+                
+                    <td>{{canciones.titulo}}</td>
+                    <td>{{canciones.artista }}</td>
+                    <td>{{canciones.genero}}</td>
+                    <td>{{canciones.precio }}</td>
+                    <td>{{canciones.duracion}}</td>
+                    <td>{{canciones.lanzamiento}}</td>
+                    <td><img src="data:image/jpeg; base64,{{canciones.imagen}}" alt="Nos encuentra imagen" width="100px"></td>
                     <td>
-                        <button><a href="{{ url_for('actualizar_canciones', id=cancion[0]) }}">Editar</a></button>
-                        <button><a href="{{ url_for('eliminar_cancion', id=cancion[0]) }}">Eliminar</a></button>
+                        <button><a href="{{ url_for('actualizar_canciones', id=canciones.id_can) }}">Editar</a></button>
+                        <button><a href="{{ url_for('eliminar_cancion', id=canciones.id_can) }}">Eliminar</a></button>
+
+                       
                     </td>
                 </tr>
                 {% endfor %}
