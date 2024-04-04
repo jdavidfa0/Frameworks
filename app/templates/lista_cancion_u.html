@@ -16,7 +16,6 @@
             
             <tr>
                
-                <th>CÓDIGO</th>
                 <th>TITULO</th>
                 <th>ARTISTA</th>
                 <th>GÉNERO</th>
@@ -26,18 +25,19 @@
                 <th>PORTADA</th>
             </tr>
 
+           
             <tbody>
-                {% for cancion in canciones %}
+                {% for canciones in canciones %}
                 <tr class="lineas">
-                    <td>{{cancion[0] }}</td>
-                    <td>{{cancion[1] }}</td>
-                    <td>{{cancion[2] }}</td>
-                    <td>{{cancion[3] }}</td>
-                    <td>{{cancion[4] }}</td>
-                    <td>{{cancion[5] }}</td>
-                    <td>{{cancion[6] }}</td>
-                    <td><img src="data:image/jpeg; base64,{{cancion.imagen}}" alt="Portada de {{cancion[]}}" width="100"></td>
-                  
+                
+                    <td>{{canciones.titulo}}</td>
+                    <td>{{canciones.artista }}</td>
+                    <td>{{canciones.genero}}</td>
+                    <td>{{canciones.precio }}</td>
+                    <td>{{canciones.duracion}}</td>
+                    <td>{{canciones.lanzamiento}}</td>
+
+                    <td><img src="data:image/jpeg; base64,{{canciones.imagen}}" alt="Nos encuentra imagen" width="100px"></td>
                 </tr>
                 {% endfor %}
 

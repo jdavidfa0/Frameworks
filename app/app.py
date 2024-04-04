@@ -60,9 +60,29 @@ def lista_cancion():
 @app.route("/Lista_canciones_u", methods=["GET", "POST"])
 def lista_cancion_u():
     cursor= db.cursor()
-    cursor.execute("SELECT * FROM canciones")
-    cancion = cursor.fetchall()
-    return render_template("lista_cancion_u.html", canciones=cancion)
+    cursor.execute("SELECT id_can, titulo, artista, genero, precio, duracion, lanzamiento, img FROM canciones")
+    canciones = cursor.fetchall()
+
+    if canciones:
+        cancioneslista=[]
+        for cancion in canciones:
+
+            imagen=base64.b64encode(cancion[7]).decode('utf-8')
+
+            cancioneslista.append({
+                'id_can': cancion[0],
+                'titulo': cancion[1],
+                'artista': cancion[2],
+                'genero': cancion[3],
+                'precio': cancion[4],
+                'duracion': cancion[5],
+                'lanzamiento': cancion[6],
+                'imagen':imagen
+            })
+        
+        return render_template("lista_cancion_u.html", canciones=cancioneslista)
+    else:
+        return render_template("lista_cancion_u.html")
 
 @app.route('/verificar')
 def usuario_existe():
