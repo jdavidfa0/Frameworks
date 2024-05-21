@@ -17,7 +17,7 @@ h1{
     background-color: rgb(158, 201, 238);
 }
 
-.container {
+.container,header {
     border:1px solid;
     margin-left: auto;
     margin-right: auto;
@@ -75,6 +75,38 @@ button:hover{
     font-weight: bold;
 }
 .cerrar{
-    margin-left: 67%;
-    margin-top: -10px;
+    margin-left:69%;
+
+}
+.cart-button{
+    padding: 10px;
+    margin-left: 1%;
+    margin-top: 10px;
+
+}
+nav{
+   border-bottom: 2px solid;
+    padding: 15px;
+    background-color: rgb(158, 201, 238) ;
+}
+li{
+    font-family:'Courier New', Courier, monospace ;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin: 45px;
+    display: inline;
+}
+li:hover{
+    background-color: rgb(221, 221, 221);
+    font-weight: bold;
+
+
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+a:visited{
+    color: black;
 }

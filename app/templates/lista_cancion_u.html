@@ -4,17 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo4.css')}}">
-   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Agregar Font Awesome -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for ('static', filename='js/carrito.js')}}"></script>
     <title>LISTADO CANCIONES</title>
     
 </head>
 <body>
     <div class="container">
         <h1>LISTA DE CANCIONES {{session['usuario']}}</h1>
-        <button class="cerrar"><a href="/logout">Cerrar Sesión</a></button>
+        <div style="display: flex;">
+            <button class="cerrar" ><a href="/logout">Cerrar Sesión</a></button>
+            <button class="cart-button"><a href="/carrito"><i class="fas fa-shopping-cart"></i></a></button>
+
+        </div>
+        
         <table class="tabla">
             
             <tr>
+                    
                
                 <th>TITULO</th>
                 <th>ARTISTA</th>
@@ -23,13 +31,15 @@
                 <th>DURACIÓN</th>
                 <th>LANZAMIENTO</th>
                 <th>PORTADA</th>
+                <th>AGREGAR</th>
             </tr>
 
            
             <tbody>
                 {% for canciones in canciones %}
                 <tr class="lineas">
-                
+
+                    
                     <td>{{canciones.titulo}}</td>
                     <td>{{canciones.artista }}</td>
                     <td>{{canciones.genero}}</td>
@@ -38,6 +48,12 @@
                     <td>{{canciones.lanzamiento}}</td>
 
                     <td><img src="data:image/jpeg; base64,{{canciones.imagen}}" alt="Nos encuentra imagen" width="100px"></td>
+                    <td>
+                        <button class="add-to-cart"
+                        data-id="{{canciones.id_can}}"
+                        data-titulo="{{ canciones.titulo}}" 
+                        data-precio="{{canciones.precio}}" type="submit">AGREGAR</button>
+                    </td>
                 </tr>
                 {% endfor %}
 

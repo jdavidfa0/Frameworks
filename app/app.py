@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, flash, session
+from flask import Flask,  jsonify, render_template, request, url_for, redirect, flash, session
 from werkzeug.security import generate_password_hash,check_password_hash
 import mysql.connector
 import base64
@@ -272,6 +272,31 @@ def actualizar_canciones(id):
         cursor.execute("SELECT * FROM canciones WHERE id_can=%s", (id,))
         data = cursor.fetchall()
         return render_template("actu_canciones.html", cancion=data[0])
+    
+
+@app.route('/agregar_carrito', methods=['GET', 'POST'])
+def agregar_carrito():
+  
+    idcan= request.form['id']
+    titulocan= request.form['titulo']
+    preciocan=request.form['precio']
+
+    if 'cart' not in session:
+        session['cart']=[]
+    
+    session['cart'].append({'id':idcan, 'titulo':titulocan,'precio': float(preciocan)})
+    session.modified =True
+
+    print("contenido del carro", session['cart'])
+
+    return jsonify({'message':'Cancion agregada al carro'})
+@app.route('/carrito', methods=['GET', 'POST'])
+def ver_carrito():
+    carro= session.get('cart', [])
+    total= sum(item['precio'] for item in carro )
+    return render_template('carrito.html', carro=carro, total=total)
+
+
 
 if __name__ == "__main__":
     app.add_url_rule("/", view_func=login)

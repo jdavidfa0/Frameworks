@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/app/static/css/estilo4.css">
+    <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo4.css')}}">
+    <script src="{{ url_for ('static', filename='js/carrito.js')}}"></script>
+    <title>Carrito de compra</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/Lista_canciones_u">Inicio</a></li>
+                <li><a href="">Comprar</a></li>
+                <li> <a href="/logout">Cerrar Sesión</a></li>
+            
+            </ul>
+        </nav>
+    </header>
+
+    <h1>CARRITO DE COMPRAS</h1>
+    <div id="contenedor">
+        {% for item in carro %}
+        <div class="cart-item">
+            <h2>{{ item.titulo }}</h2>
+            <p>Precio: ${{ item.precio}}</p>
+        </div>
+        {% endfor %}
+        <h3>Total: $ {{ total}}</h3>
+
+    </div>
+
+
+
+</body>
+</html>
