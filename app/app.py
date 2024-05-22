@@ -292,6 +292,7 @@ def agregar_carrito():
     return jsonify({'message':'Cancion agregada al carro'})
 @app.route('/carrito', methods=['GET', 'POST'])
 def ver_carrito():
+    
     carro= session.get('cart', [])
     total= sum(item['precio'] for item in carro )
     return render_template('carrito.html', carro=carro, total=total)
