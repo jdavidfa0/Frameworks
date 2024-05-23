@@ -290,12 +290,39 @@ def agregar_carrito():
     print("contenido del carro", session['cart'])
 
     return jsonify({'message':'Cancion agregada al carro'})
+
+
+@app.route('/eliminar_uno', methods=['GET', 'POST'])
+def eliminar_uno():
+
+
+    session.modified=True
+    return render_template('carrito.html')
+
+
+
+
+
+
+
 @app.route('/carrito', methods=['GET', 'POST'])
 def ver_carrito():
     
     carro= session.get('cart', [])
     total= sum(item['precio'] for item in carro )
     return render_template('carrito.html', carro=carro, total=total)
+
+
+
+@app.route('/eliminar_carrito', methods=['GET', 'POST'])
+def limpiar():
+    session['cart'].clear()
+    session.modified =True
+    
+    return render_template('carrito.html')
+
+
+
 
 
 

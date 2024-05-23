@@ -16,4 +16,21 @@ $(document).ready(function(){
         });
 
     });
+    // $('.eliminar_uno').on('click', function(){
+
+    //     const titulocan =$(this).data('titulo');
+    //     const preciocan =$(this).data('precio');
+
+    //     $.post('/eliminar_uno', {
+    //         titulo:titulocan,
+    //         precio:preciocan
+    //     });
+
+        
+
+
+
+    // });
 });
+
+
