@@ -194,7 +194,7 @@ def login():
                 return redirect (url_for ('lista_cancion_u'))
         
         else:
-            error='Credenciales invalidas, intente denuevo'
+            error= print ('Credenciales invalidas, intente denuevo')
             return render_template('login.html', error=error)
     return render_template('login.html')
 
@@ -293,10 +293,10 @@ def agregar_carrito():
 
 @app.route('/eliminar_uno', methods=['POST'])
 def eliminar_uno():
-    print('AUXILIO')
+   
 
     idcan=request.form.get('id')
-    print(idcan)
+
     
     if 'cart' in session:
         carrito =session['cart']
@@ -330,10 +330,7 @@ def limpiar():
     session['cart'].clear()
     session.modified =True
     
-    return render_template('carrito.html')
-
-
-
+    return redirect(url_for("lista_cancion_u"))
 
 
 

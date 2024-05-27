@@ -16,7 +16,8 @@ $(document).ready(function(){
         });
 
     });
-    $('.eliminar_uno_').on('click', function(){
+    $('.eliminar_uno').on('click', function(){
+  
         const id_eliminar= $(this).data('id');
 
         $.post('/eliminar_uno', {
@@ -25,6 +26,12 @@ $(document).ready(function(){
             window.location.href='/carrito';
         });
     });
+    $('.comprar').on('click', function(){
+       alert('Compra exitosa')
+       
+       window.location.href='/Lista_canciones_u';
+    });
+
 
 });
 
