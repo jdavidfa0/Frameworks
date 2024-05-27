@@ -11,26 +11,25 @@ $(document).ready(function(){
             precio:preciocan
 
 
-        }, function(data){
-            alert(data.message || 'Error al agregar la canción');
+        }, function(){
+            window.location.href='/Lista_canciones_u';
         });
 
     });
-    // $('.eliminar_uno').on('click', function(){
+    $('.eliminar_uno_').on('click', function(){
+        const id_eliminar= $(this).data('id');
 
-    //     const titulocan =$(this).data('titulo');
-    //     const preciocan =$(this).data('precio');
+        $.post('/eliminar_uno', {
+            id :id_eliminar
+        }, function(){
+            window.location.href='/carrito';
+        });
+    });
 
-    //     $.post('/eliminar_uno', {
-    //         titulo:titulocan,
-    //         precio:preciocan
-    //     });
-
-        
-
-
-
-    // });
 });
+
+
+
+
 
 
