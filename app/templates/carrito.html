@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/estilo4.css">
+    <link rel="stylesheet" href="/static/css/estilo4.css">
     <link rel="stylesheet" href="{{url_for ('static', filename='css/estilo4.css')}}">
-
+ 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script src="{{ url_for ('static', filename='js/carrito.js')}}"></script>
     <title>Carrito de compra</title>
 </head>
 <body>
-
     <nav>
         <ul>
             <li><a href="/Lista_canciones_u">Inicio</a></li>
-            <li><a href="">Comprar</a></li>
+            <li><a class="comprar" href="/eliminar_carrito">Comprar</a></li>
             <li> <a href="/logout">Cerrar Sesión</a></li>
         
         </ul>
@@ -65,7 +65,8 @@
     <h3 class="total">Total: $ {{ total}}</h3>
 
 
-    
+
+
 
 </body>
 </html>
