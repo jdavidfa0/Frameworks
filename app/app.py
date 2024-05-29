@@ -320,7 +320,7 @@ def ver_carrito():
     
     carro= session.get('cart', [])
     total= sum(item['precio'] for item in carro )
-    print(session['cart'])
+
     return render_template('carrito.html', carro=carro, total=total)
 
 
